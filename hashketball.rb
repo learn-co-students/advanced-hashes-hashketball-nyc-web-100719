@@ -258,3 +258,14 @@ def winning_team
   winning_team_name = team1_points > team2_points ? team1_name : team2_name
   winning_team_name 
 end
+
+def player_with_longest_name
+  longest_name = ""
+  
+  
+  longest_name
+end
+
+
+
+
