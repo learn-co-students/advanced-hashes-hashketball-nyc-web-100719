@@ -227,3 +227,34 @@ def big_shoe_rebounds
   player_rebounds
 end
 
+def most_points_scored
+  most_points = 0
+  most_points_player = ""
+  game_hash.each do |location, team_data|
+    players_arr = game_hash[location][:players]
+    players_arr.each do |attribute_hash|
+      attribute_hash.each do |attribute, value|
+        if attribute_hash[:points] > most_points
+          most_points = attribute_hash[:points]
+          most_points_player = attribute_hash[:player_name]
+        end
+      end 
+    end
+  end
+  most_points_player
+end
+
+def winning_team
+  team1_name = game_hash[:home][:team_name]
+  team2_name = game_hash[:away][:team_name]
+  team1_points = 0
+  team2_points = 0
+  game_hash[:home][:players].each do |attribute, value|
+    team1_points = team1_points + attribute[:points]
+  end
+  game_hash[:away][:players].each do |attribute, value|
+    team2_points = team2_points + attribute[:points]
+  end
+  winning_team_name = team1_points > team2_points ? team1_name : team2_name
+  winning_team_name 
+end
