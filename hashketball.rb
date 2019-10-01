@@ -177,11 +177,9 @@ def player_numbers(team_name)
   jersey_arr = []
   game_hash.each do |location, team_data|
     player_arr = game_hash[location][:players]
-    player_arr.each do |attribute_hash|
-      attribute_hash.each do |attribute, value|
-        if game_hash[location][:team_name] = team_name
-          p game_hash[location][team_name]
-        end
+    if game_hash[location][:team_name] == team_name
+      player_arr.each do |attribute_hash|
+        jersey_arr << attribute_hash[:number]
       end
     end
   end
