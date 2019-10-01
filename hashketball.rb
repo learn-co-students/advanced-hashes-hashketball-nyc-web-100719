@@ -185,3 +185,32 @@ def player_numbers(team_name)
   end
   jersey_arr
 end
+
+def player_stats(player_name)
+  stats = {}
+  game_hash.each do |location, team_data|
+    player_arr = game_hash[location][:players]
+    player_arr.each do |attribute_hash|
+      attribute_hash.each do |attribute, hash|
+        if attribute_hash[:player_name] == player_name
+          stats = {
+            :number => attribute_hash[:number], 
+            :shoe => attribute_hash[:shoe],
+            :points => attribute_hash[:points],
+            :rebounds => attribute_hash[:rebounds],
+            :assists => attribute_hash[:assists], 
+            :steals => attribute_hash[:steals], 
+            :blocks => attribute_hash[:blocks], 
+            :slam_dunks => attribute_hash[:slam_dunks]
+          }
+        end
+      end 
+    end
+  end
+  p stats
+end
+
+def big_shoe_rebounds
+
+end
+
