@@ -286,7 +286,7 @@ def long_name_steals_a_ton?
         if longest_name_steals > attribute_hash[:steals]
           longest_name_most_steals = true
         else 
-          !!longest_name_most_steals = false
+          longest_name_most_steals = false
         end
       end
     end
