@@ -28,7 +28,7 @@ def game_hash
           :slam_dunks => 7
         },
         {
-          :player_name => "Brook Lopez ",
+          :player_name => "Brook Lopez",
           :number => 11,
           :shoe => 17,
           :points => 17,
@@ -66,7 +66,7 @@ def game_hash
       :colors => ["Turquoise","Purple"],
       :players => [
         {
-          :player_name => "Jeff Adrian",
+          :player_name => "Jeff Adrien",
           :number => 4,
           :shoe => 18,
           :points => 10,
@@ -84,10 +84,10 @@ def game_hash
           :assists => 7,
           :steals => 22,
           :blocks => 15,
-          :slam_dunks => 7
+          :slam_dunks => 10
         },
         {
-          :player_name => "Desagna Diop",
+          :player_name => "DeSagna Diop",
           :number => 2,
           :shoe => 14,
           :points => 24,
@@ -117,7 +117,7 @@ def game_hash
           :assists => 12,
           :steals => 7,
           :blocks => 5,
-          :slam_dunks => 15
+          :slam_dunks => 12
         }]
     }
   }
@@ -126,17 +126,88 @@ end
 
 def num_points_scored(player)
   game_hash.each do |home_away, team_info|
-    
-    team_info.each do |desc, info|
-        binding.pry
-        if [:desc] == [:players]
-      desc.each do |stats, count|
-      
-        if player == stats
-         return points
-        end
+    i = 0 
+    while i< team_info[:players].length
+      if team_info[:players][i][:player_name] == player
+        return team_info[:players][i][:points]
       end
-    end  
+      i += 1 
+    end
+  end  
+end
+
+def shoe_size(player)
+  game_hash.each do |home_away, team_info|
+    i = 0 
+    while i< team_info[:players].length
+      if team_info[:players][i][:player_name] == player
+        return team_info[:players][i][:shoe]
+      end
+      i += 1 
+    end
+  end  
+end
+
+def team_colors(team)
+  game_hash.each do |home_away, team_info|
+      if team_info[:team_name] == team
+        return team_info[:colors]
+      end
+  end  
+end
+
+def team_names
+  team_name_array = []
+  game_hash.each do |home_away, team_info|
+   # binding.pry
+    if team_info[:team_name]
+      team_name_array.push(team_info[:team_name])
+    end
+  end
+  team_name_array
+end
+
+def player_numbers(team_name)
+  number_array = []
+  game_hash.each do |home_away, team_info|
+    if team_name == team_info[:team_name]
+      i=0 
+      while i< team_info[:players].length
+         number_array.push(team_info[:players][i][:number])
+        i += 1 
+      end
+    end
+  end 
+  number_array
+end
+
+def player_stats(player)
+   game_hash.each do |home_away, team_info|
+     i = 0 
+     while i < team_info[:players].length
+      if team_info[:players][i][:player_name] == player 
+        
+        team_info[:players][i].delete(:player_name)
+        return team_info[:players][i]
+      end
+      i += 1 
+     end 
+   end 
+end
+
+def big_shoe_rebounds
+  game_hash.each do |home_away, team_info|
+    i = 0 
+    max = 0 
+    new_rebounds = 0 
+    while i< team_info[:players].length
+      if  team_info[:players][i][:shoe] > max
+         max = team_info[:players][i][:shoe]
+         new_rebounds = team_info[:players][i][:rebounds] 
+      end 
+     i += 1 
+    end
+   return new_rebounds
   end
 end
 
